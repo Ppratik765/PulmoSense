@@ -1,6 +1,8 @@
 # PulmoSense
 
 **Edge-Optimised Deep Learning for Real-Time Acoustic Respiratory Disease Screening**
+<img width="1584" height="773" alt="Git screenshot" src="https://github.com/user-attachments/assets/1ccec420-007d-4a2d-943c-db3c17ee2354" />
+<img width="1584" height="832" alt="Git screenshot" src="https://github.com/user-attachments/assets/17acb9ea-02a5-4621-ab7f-f9cf2c7756b8" />
 
 ## Table of Contents
 1. [Project Overview](#1-project-overview)
