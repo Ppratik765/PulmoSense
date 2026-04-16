@@ -130,3 +130,73 @@ PulmoSense/
 ├── settings.gradle.kts                     # Project module inclusion
 └── README.md                               # Project documentation
 ```
+Note: The Python training pipeline (1_preprocess.py, 2_train.py) and .npy data artefacts are maintained in a separate analytical directory and are not bundled into the Android APK.
+
+## 9. Installation and Setup Guide
+
+### 9.1 Python Model Training Environment
+To reconstruct the `.tflite model` from the raw ICBHI audio files, establish a standard data science environment.
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Ppratik765/PulmoSense.git](https://github.com/Ppratik765/PulmoSense.git)
+   cd PulmoSense
+   ```
+2. **Install dependencies:**
+   ```bash
+   pip install tensorflow librosa numpy scikit-learn
+   ```
+3. **Execute Preprocessing:**
+    Ensure the ICBHI .wav and .txt files are located in the target directory, then execute the sliding-window STFT and augmentation script.
+   ```bash
+   python 1_preprocess.py
+   ```
+4. Execute Fine-Tuning:
+    Load the resulting .npy arrays into the MobileNetV3 architecture
+   ```bash
+   python 2_train.py
+   ```
+   The script will output the compiled `pulmosense.tflite` binary upon satisfying the Early Stopping parameters.
+
+### 9.2 Android Application Build
+
+1. To compile the Android APK and deploy the application to a physical test device:
+2. Install the latest version of Android Studio.
+3. Open Android Studio and select **File > Open**, navigating to the root PulmoSense directory.
+4. Ensure the `pulmosense.tflite` file is located precisely in `app/src/main/assets/`.
+5. The Gradle sync process will automatically pull the required namespace-corrected TFLite dependencies (`2.16.1`) and `JTransforms`.
+6. Connect an Android device (API Level 24+) via USB and enable USB Debugging.
+7. Click the **Run 'app'** (Green Arrow) button in the top toolbar to compile and install the application.
+
+## 10. Future Roadmap
+The current architecture provides a robust foundation for active clinical screening. Future iterations of the PulmoSense platform will target expanded telemetric capabilities:
+
+* **Passive Nocturnal Monitoring:** Implementing continuous, ultra-low-power overnight inference loops to track sleep apnea occurrences and nocturnal asthma exacerbations without significant battery degradation.
+
+* **Decentralised Telehealth Routing:** Automated generation of encrypted PDF diagnostic reports containing the raw spectrograms and AI confidence scores. These payloads will be engineered to transmit via asynchronous Bluetooth mesh networks or offline UPI rails to connect rural patients with remote pulmonologists.
+
+* **Federated Learning:** Investigating on-device training protocols to allow the model to adapt to localized acoustic environments and noise profiles without centralizing sensitive patient data.
+
+## 11. Author and Academic Context
+Priyanshu Pratik
+
+* Bachelor of Technology in Artificial Intelligence and Data Science
+
+* Gati Shakti Vishwavidyalaya, Vadodara, Gujarat, India
+
+* Specialisation: Transportation, Logistics, and Edge AI Deployment
+
+This software is developed as part of advanced research into offline medical diagnostics and resource-constrained artificial intelligence deployment.
+
+## 12. License and Citation
+This project is licensed under the MIT License. You are free to use, modify, and distribute this software, provided that the original copyright notice and this permission notice are included in all copies or substantial portions of the software.
+
+If you utilise this architecture or preprocessing methodology in academic research, please attribute as follows:
+
+```Plaintext
+Priyanshu Pratik. (2026). PulmoSense: Edge-Optimised Deep Learning for Real-Time Acoustic 
+Respiratory Disease Screening. Gati Shakti Vishwavidyalaya.
+For technical inquiries or pull request submissions, please refer to the issues tab or submit a standardised pull request detailing the proposed architectural changes.
+```
+   
+ 
