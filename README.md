@@ -1,4 +1,6 @@
-# PulmoSense: Edge-Optimised Deep Learning for Real-Time Acoustic Respiratory Disease Screening
+# PulmoSense: 
+
+**Edge-Optimised Deep Learning for Real-Time Acoustic Respiratory Disease Screening**
 
 ## Table of Contents
 1. [Project Overview](#1-project-overview)
