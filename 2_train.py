@@ -1,4 +1,4 @@
-# This was trained on a T4 GPU with 15GB of VRAM. If your system has a different VRAM size, kindly adjust the parameters(for example, batch size)
+# This was trained on a T4 GPU with 15GB of VRAM. If your system has a different VRAM size, kindly adjust the parameters(for example, batch size) to fit as much training data as possible
 
 import numpy as np
 import tensorflow as tf
